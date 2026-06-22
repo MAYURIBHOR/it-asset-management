@@ -1,0 +1,204 @@
+/* Modern Reset & Professional Typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #f8f9fa;
+  color: #212529;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Dashboard Layout Layout */
+.dashboard-container {
+  max-width: 1140px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: #64748b;
+  font-size: 15px;
+  margin-bottom: 32px;
+}
+
+/* Sleek Navigation Tabs */
+.nav-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 16px;
+}
+
+.nav-btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  background: transparent;
+  color: #64748b;
+}
+
+.nav-btn.active {
+  background-color: #0f172a;
+  color: #ffffff;
+}
+
+.nav-btn:not(.active):hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+/* Elegant Cards for Forms & Tables */
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  padding: 24px;
+  margin-bottom: 32px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+/* Premium Form Elements */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.form-control {
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background-color: #fff;
+  color: #1e293b;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus {
+  border-color: #0f172a;
+}
+
+/* Premium Enterprise Tables */
+.custom-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+}
+
+.custom-table th {
+  background-color: #f8fafc;
+  color: #475569;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 14px 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.custom-table td {
+  padding: 16px;
+  font-size: 14px;
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.custom-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Sophisticated Action Buttons */
+.btn-primary {
+  padding: 10px 20px;
+  background-color: #0f172a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #1e293b;
+}
+
+.btn-action {
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-right: 8px;
+}
+
+.btn-edit {
+  background-color: #f1f5f9;
+  color: #334155;
+}
+
+.btn-edit:hover {
+  background-color: #e2e8f0;
+}
+
+.btn-delete {
+  background-color: #fff1f2;
+  color: #df1c1c;
+}
+
+.btn-delete:hover {
+  background-color: #ffe4e6;
+}
+
+/* Professional Status Badges */
+.badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.badge-available { background-color: #dcfce7; color: #166534; }
+.badge-assigned { background-color: #fef9c3; color: #854d0e; }
+.badge-repair { background-color: #fee2e2; color: #991b1b; }

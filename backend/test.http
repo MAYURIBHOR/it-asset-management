@@ -1,0 +1,46 @@
+POST http://localhost:5000/api/assets
+Content-Type: application/json
+
+{
+    "name": "HP EliteBook Laptop",
+    "category": "Hardware",
+    "status": "Available"
+}
+
+###
+PUT http://localhost:5000/api/assets/2
+Content-Type: application/json
+
+{
+    "name": "HP EliteBook Laptop",
+    "category": "Hardware",
+    "status": "Assigned",
+    "assigned_to": null
+}
+
+###
+DELETE http://localhost:5000/api/assets/1
+
+###
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{
+    
+    "name": "Mayuri Bhor",
+    "email": "mayuri@example.com",
+    "role": "Student"
+}
+
+###
+PUT http://localhost:5000/api/users/1
+Content-Type: application/json
+
+{
+    "name": "Mayuri Bhor",
+    "email": "mayuri.newemail@example.com",
+    "role": "Admin"
+}
+
+###
+DELETE http://localhost:5000/api/users/1
