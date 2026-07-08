@@ -1,34 +1,27 @@
-# 🏢 Enterprise IT Asset Management System
+# IT Asset Management Dashboard
 
-A full-stack, production-grade web application designed for enterprise resource tracking, infrastructure administration, and secure user management. 
+A full-stack web application built to track company hardware, manage user assignments, and log administrative actions. I built this project to deepen my understanding of backend routing, relational databases, and secure authentication.
 
-## ✨ Core Features
+## 🛠️ The Tech Stack
 
-* **🔐 Cryptographic Authentication:** Secure access gateway utilizing `bcrypt` password hashing and stateless JSON Web Tokens (JWT).
-* **📦 Asset Lifecycle Management:** Complete CRUD functionality for hardware, software, and network assets with real-time status tracking (Available, Assigned, In Repair).
-* **👥 Role-Based Directory:** Searchable user directory with dynamic filtering and analytics calculations.
-* **📜 Automated Audit Trail:** Silent, asynchronous backend logging system that records administrative actions with exact timestamps and user IDs for ultimate accountability.
-* **📊 Live Analytics Dashboard:** Real-time calculation of system metrics across both users and assets.
+I chose a relational SQL database over a NoSQL solution because asset tracking requires strict relationships (e.g., an asset can only belong to one user at a time).
 
-## 🛠️ Technical Architecture
+* **Frontend:** React.js, standard CSS
+* **Backend:** Node.js, Express.js
+* **Database:** MySQL
+* **Security:** JSON Web Tokens (JWT) for session management, bcrypt for password hashing
 
-### Frontend (Client-Side)
-* **Framework:** React.js (Vite)
-* **Styling:** Custom CSS with CSS Variables and Flexbox/Grid layouts
-* **Routing/State:** React Hooks (`useState`, `useEffect`)
-* **HTTP Client:** Axios
+## ✨ What I Learned & Implemented
 
-### Backend (Server-Side)
-* **Runtime:** Node.js
-* **Framework:** Express.js
-* **Database:** MySQL (Relational schema with foreign keys)
-* **Security:** `jsonwebtoken` (JWT), `bcrypt`
-* **Middleware:** `cors`
+* **CRUD Operations:** Built out full Create, Read, Update, and Delete endpoints using Express routers to manage the MySQL database.
+* **Relational Database Design:** Engineered a schema where the `assets` table successfully links to the `users` table via foreign keys.
+* **Custom Audit Trail:** Wrote asynchronous backend logic to automatically log a timestamped record every time an asset is created, updated, or deleted.
+* **State Management:** Used React `useState` and `useEffect` to handle UI updates and filter data without refreshing the page.
 
-## 🚀 Local Installation
+## 🚀 How to Run Locally
 
-If you would like to run this application locally, follow these steps:
-
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/YourUsername/it-asset-management.git](https://github.com/YourUsername/it-asset-management.git)
+1. Clone this repository.
+2. Ensure XAMPP (or another MySQL server) is running.
+3. Import the database tables into a database named `it_asset_db`.
+4. In the `backend` folder, run `npm install` and then `node server.js`.
+5. In the `frontend` folder, run `npm install` and then `npm run dev`.
