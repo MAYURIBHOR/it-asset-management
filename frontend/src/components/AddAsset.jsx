@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function AddAsset() {
-  const [name, setName] = useState('');
+function AddAsset({ onAssetAdded }) {
+  const [name, setName] = useState(''); 
   const [category, setCategory] = useState('Hardware');
   const [status, setStatus] = useState('Available');
 
@@ -16,6 +16,7 @@ function AddAsset() {
         setName('');
         setCategory('Hardware');
         setStatus('Available');
+      if (onAssetAdded) onAssetAdded(); 
       })
       .catch((error) => console.error("Error operationalizing data:", error));
   };
