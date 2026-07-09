@@ -59,7 +59,7 @@ function AssetList({ refreshTrigger, currentUser }) {
   const handleAssignUser = (asset, userId) => {
     const payload = { user_id: userId ? parseInt(userId) : null };
     
-    axios.patch(`http://localhost:5000/api/assets/${asset.id}/assign`, payload)
+    axios.patch(`${import.meta.env.VITE_API_URL}/api/assets/${asset.id}/assign`, payload)
       .then(() => {
         setAssets(assets.map(a => {
           if (a.id === asset.id) {
@@ -87,7 +87,7 @@ function AssetList({ refreshTrigger, currentUser }) {
   };
 
   const handleSaveClick = (asset) => {
-    axios.put(`http://localhost:5000/api/assets/${asset.id}`, editFormData)
+    axios.put(`${import.meta.env.VITE_API_URL}/api/assets/${asset.id}`, editFormData)
       .then(() => {
         setAssets(assets.map((a) => (a.id === asset.id ? { ...a, ...editFormData } : a)));
         setEditingId(null); 
