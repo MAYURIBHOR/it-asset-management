@@ -13,7 +13,7 @@ function Auth({ onLogin }) {
     try {
       if (isLoginMode) {
         // 🔐 Attempt Login
-        const res = await axios.post('http://localhost:5000/api/auth/login', {
+          const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
           email: formData.email,
           password: formData.password
         });
@@ -26,7 +26,7 @@ function Auth({ onLogin }) {
         onLogin(res.data.user);
       } else {
         // 🆕 Attempt Registration
-        await axios.post('http://localhost:5000/api/auth/register', formData);
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, formData);
         alert('Account created successfully! Please log in.');
         setIsLoginMode(true); // Switch back to the login view
         setFormData({ name: '', email: '', password: '' });

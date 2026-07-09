@@ -10,7 +10,7 @@ function AddAsset() {
     e.preventDefault();
     const newAsset = { name, category, status };
 
-    axios.post('http://localhost:5000/api/assets', newAsset)
+    axios.post(`${import.meta.env.VITE_API_URL}/api/assets`, newAsset)
       .then(() => {
         alert("Asset successfully registered.");
         setName('');

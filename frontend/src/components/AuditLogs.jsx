@@ -7,7 +7,7 @@ function AuditLogs() {
 
   useEffect(() => {
     // Fetch the latest 50 logs from the backend we built yesterday
-    axios.get('http://localhost:5000/api/audit')
+    axios.get(`${import.meta.env.VITE_API_URL}/api/audit`)
       .then(res => {
         setLogs(res.data);
         setLoading(false);

@@ -17,8 +17,9 @@ function AssetList({ refreshTrigger, currentUser }) {
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        const assetRes = await axios.get('http://localhost:5000/api/assets');
-        const userRes = await axios.get('http://localhost:5000/api/users');
+        
+        const assetRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/assets`);
+        const userRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/users`);
         setAssets(assetRes.data);
         setUsers(userRes.data);
         setLoading(false);
@@ -35,7 +36,7 @@ function AssetList({ refreshTrigger, currentUser }) {
     // Failsafe: if currentUser isn't loaded yet, default to 'System Admin'
     const adminName = currentUser ? currentUser.name : 'System Admin';
     
-    axios.post('http://localhost:5000/api/audit', {
+    axios.post(`${import.meta.env.VITE_API_URL}/api/audit`, {
       admin_name: adminName,
       action: actionMessage
     }).catch(err => console.error("Silent Audit Log Error:", err));
@@ -44,7 +45,7 @@ function AssetList({ refreshTrigger, currentUser }) {
   // --- CRUD FUNCTIONS (Now with Logging!) ---
   const handleDelete = (asset) => {
     if (window.confirm(`Are you sure you want to delete ${asset.name}?`)) {
-      axios.delete(`http://localhost:5000/api/assets/${asset.id}`)
+    axios.delete(`${import.meta.env.VITE_API_URL}/api/assets/${asset.id}`)
         .then(() => {
           setAssets(assets.filter(a => a.id !== asset.id));
           
