@@ -182,3 +182,127 @@
     border-right-color: var(--border);
   }
 }
+
+/* =========================================
+   NEW SPLIT-SCREEN AUTHENTICATION STYLES
+   ========================================= */
+
+.auth-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  font-family: system-ui, -apple-system, sans-serif;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.auth-branding {
+  flex: 1;
+  background-color: #0f172a; 
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem;
+  background-image: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  text-align: left;
+}
+
+.auth-branding h1 {
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  line-height: 1.1;
+  color: white;
+}
+
+.auth-branding p {
+  color: #94a3b8;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+
+.step-indicator {
+  color: #38bdf8;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.auth-form-wrapper {
+  flex: 1;
+  background-color: #f8fafc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.auth-card {
+  background: white;
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+}
+
+.auth-card h2 {
+  text-align: center;
+  color: #0f172a;
+  margin-bottom: 2rem;
+  margin-top: 0;
+  font-size: 1.8rem;
+}
+
+.toggle-text {
+  text-align: center;
+  margin-top: 2rem;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.toggle-link {
+  color: #0284c7;
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.toggle-link:hover {
+  text-decoration: underline;
+  color: #0369a1;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+}
+
+@media (max-width: 768px) {
+  .auth-container {
+    flex-direction: column;
+    position: relative;
+  }
+  .auth-branding {
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  .auth-branding h1 {
+    font-size: 2.5rem;
+  }
+}

@@ -13,7 +13,7 @@ function Auth({ onLogin }) {
     try {
       if (isLoginMode) {
         // 🔐 Attempt Login
-          const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
+        const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
           email: formData.email,
           password: formData.password
         });
@@ -37,65 +37,84 @@ function Auth({ onLogin }) {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh' }}>
-      <div className="card" style={{ width: '100%', maxWidth: '400px', padding: '32px' }}>
-        <h2 style={{ textAlign: 'center', marginTop: 0, color: '#0f172a' }}>
-          {isLoginMode ? 'System Access' : 'Register Admin'}
-        </h2>
-        
-        {error && (
-          <div style={{ backgroundColor: '#fee2e2', color: '#ef4444', padding: '10px', borderRadius: '6px', marginBottom: '16px', textAlign: 'center', fontSize: '14px' }}>
-            {error}
-          </div>
-        )}
-        
-        <form onSubmit={handleSubmit}>
-          {!isLoginMode && (
-            <div style={{ marginBottom: '16px' }}>
-              <label style={{ display: 'block', marginBottom: '4px', fontSize: '14px', fontWeight: 'bold' }}>Full Name</label>
-              <input 
-                type="text" 
-                className="form-control" 
-                required 
-                value={formData.name}
-                onChange={(e) => setFormData({...formData, name: e.target.value})}
-              />
+    <div className="auth-container">
+      {/* LEFT SIDE: Branding */}
+      <div className="auth-branding">
+        <div className="step-indicator">
+          Step {isLoginMode ? '1: User Login' : '2: Admin Registration'}
+        </div>
+        <h1>IT ASSET<br/>MANAGEMENT<br/>SYSTEM</h1>
+        <p>Enterprise resource tracking and infrastructure administration.</p>
+      </div>
+
+      {/* RIGHT SIDE: Form */}
+      <div className="auth-form-wrapper">
+        <div className="auth-card">
+          <h2>System Access</h2>
+          
+          {error && (
+            <div style={{ backgroundColor: '#fee2e2', color: '#ef4444', padding: '10px', borderRadius: '6px', marginBottom: '16px', textAlign: 'center', fontSize: '14px' }}>
+              {error}
             </div>
           )}
           
-          <div style={{ marginBottom: '16px' }}>
-            <label style={{ display: 'block', marginBottom: '4px', fontSize: '14px', fontWeight: 'bold' }}>Email Address</label>
-            <input 
-              type="email" 
-              className="form-control" 
-              required 
-              value={formData.email}
-              onChange={(e) => setFormData({...formData, email: e.target.value})}
-            />
-          </div>
-          
-          <div style={{ marginBottom: '24px' }}>
-            <label style={{ display: 'block', marginBottom: '4px', fontSize: '14px', fontWeight: 'bold' }}>Password</label>
-            <input 
-              type="password" 
-              className="form-control" 
-              required 
-              value={formData.password}
-              onChange={(e) => setFormData({...formData, password: e.target.value})}
-            />
-          </div>
-          
-          <button type="submit" className="btn-action" style={{ width: '100%', backgroundColor: '#0f172a', color: 'white', padding: '12px', fontSize: '16px' }}>
-            {isLoginMode ? 'Authenticate' : 'Create Account'}
-          </button>
-        </form>
+          <form onSubmit={handleSubmit}>
+            {!isLoginMode && (
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ display: 'block', marginBottom: '6px', fontSize: '14px', fontWeight: 'bold', color: '#334155' }}>Full Name</label>
+                <input 
+                  type="text" 
+                  className="form-control" 
+                  placeholder="e.g., Aarya"
+                  required 
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                />
+              </div>
+            )}
+            
+            <div style={{ marginBottom: '16px' }}>
+              <label style={{ display: 'block', marginBottom: '6px', fontSize: '14px', fontWeight: 'bold', color: '#334155' }}>Email Address</label>
+              <input 
+                type="email" 
+                className="form-control" 
+                placeholder="user@company.com"
+                required 
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
+              />
+            </div>
+            
+            <div style={{ marginBottom: '24px' }}>
+              <label style={{ display: 'block', marginBottom: '6px', fontSize: '14px', fontWeight: 'bold', color: '#334155' }}>Password</label>
+              <input 
+                type="password" 
+                className="form-control" 
+                placeholder="••••••••"
+                required 
+                value={formData.password}
+                onChange={(e) => setFormData({...formData, password: e.target.value})}
+              />
+            </div>
+            
+            <button type="submit" className="btn-action" style={{ width: '100%', backgroundColor: '#0f172a', color: 'white', padding: '12px', fontSize: '16px', borderRadius: '6px', border: 'none', cursor: 'pointer', fontWeight: 'bold', transition: 'background-color 0.2s' }}>
+              {isLoginMode ? 'Authenticate' : 'Create Account'}
+            </button>
+          </form>
 
-        <p 
-          style={{ textAlign: 'center', marginTop: '20px', cursor: 'pointer', color: '#3b82f6', fontSize: '14px', fontWeight: 'bold' }} 
-          onClick={() => setIsLoginMode(!isLoginMode)}
-        >
-          {isLoginMode ? 'Need an account? Register here' : 'Already have an account? Log in'}
-        </p>
+          <p className="toggle-text">
+            {isLoginMode ? 'Need an account? ' : 'Already have an account? '}
+            <span 
+              className="toggle-link" 
+              onClick={() => {
+                setIsLoginMode(!isLoginMode);
+                setError(''); // Clears any error when switching modes
+              }}
+            >
+              {isLoginMode ? 'Register here' : 'Log in'}
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );
