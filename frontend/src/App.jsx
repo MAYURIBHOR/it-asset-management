@@ -39,92 +39,79 @@ function App() {
 
   // ✅ IF LOGGED IN, RENDER THE FULL ENTERPRISE DASHBOARD
   return (
-    <div style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
+    <div className="dashboard-layout">
       
-      {/* 🎩 Main Header & User Info */}
-      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
-        <div>
-          <h1 style={{ margin: '0 0 8px 0', color: '#0f172a' }}>IT Asset Management</h1>
-          <p style={{ margin: 0, color: '#64748b' }}>Enterprise resource tracking and infrastructure administration.</p>
+      {/* LEFT SIDEBAR */}
+      <aside className="sidebar">
+        <div className="sidebar-logo">
+          <div style={{ width: '32px', height: '32px', background: '#2563eb', borderRadius: '8px' }}></div>
+          IT ASSET MGT
         </div>
         
-        <div style={{ textAlign: 'right' }}>
-          <p style={{ margin: '0 0 12px 0', fontWeight: 'bold', color: '#0f172a' }}>
-            👤 {currentUser.name} <span style={{ color: '#64748b', fontWeight: 'normal', fontSize: '14px' }}>({currentUser.role})</span>
-          </p>
+        <nav className="sidebar-nav">
           <button 
-            onClick={handleLogout} 
-            className="btn-action" 
-            style={{ backgroundColor: '#ef4444', color: 'white', padding: '8px 16px' }}
+            className={`nav-item ${activeTab === 'assets' ? 'active' : ''}`}
+            onClick={() => setActiveTab('assets')}
           >
-            🚪 Secure Logout
+            Assets Inventory
           </button>
+          <button 
+            className={`nav-item ${activeTab === 'users' ? 'active' : ''}`}
+            onClick={() => setActiveTab('users')}
+          >
+            User Directory
+          </button>
+          <button 
+            className={`nav-item ${activeTab === 'logs' ? 'active' : ''}`}
+            onClick={() => setActiveTab('logs')}
+          >
+            System Logs
+          </button>
+        </nav>
+      </aside>
+
+      {/* MAIN RIGHT PANEL */}
+      <main className="main-panel">
+        
+        {/* TOP NAVBAR */}
+        <header className="topbar">
+          <div style={{ color: '#94a3b8' }}>Search placeholder...</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <div style={{ textAlign: 'right' }}>
+              <div style={{ fontWeight: 'bold', color: '#0f172a', fontSize: '14px' }}>{currentUser.name}</div>
+              <div style={{ color: '#64748b', fontSize: '12px' }}>{currentUser.role}</div>
+            </div>
+            <button 
+              onClick={handleLogout}
+              style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #e2e8f0', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', color: '#ef4444' }}
+            >
+              Logout
+            </button>
+          </div>
+        </header>
+
+        {/* SCROLLABLE CONTENT AREA */}
+        <div className="content-scroll">
+          
+          <div className="header-section">
+            <div>
+              <h1 style={{ margin: '0 0 8px 0', fontSize: '24px', color: '#0f172a' }}>IT Asset Management</h1>
+              <p style={{ margin: 0, color: '#64748b' }}>Enterprise resource tracking and infrastructure administration.</p>
+            </div>
+          </div>
+
+          {/* DYNAMIC COMPONENT RENDERING */}
+          {activeTab === 'assets' && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+              <AddAsset onAssetAdded={() => setRefreshTrigger(prev => prev + 1)} />
+              <AssetList refreshTrigger={refreshTrigger} currentUser={currentUser} />
+            </div>
+          )}
+
+          {activeTab === 'users' && <UserList />}
+          {activeTab === 'logs' && <AuditLogs />}
+
         </div>
-      </header>
-
-      {/* 🗺️ Navigation Tabs */}
-      <div style={{ borderBottom: '2px solid #e2e8f0', marginBottom: '24px', display: 'flex', gap: '8px' }}>
-        <button 
-          onClick={() => setActiveTab('assets')}
-          style={{ 
-            padding: '12px 24px', 
-            backgroundColor: activeTab === 'assets' ? '#0f172a' : 'transparent', 
-            color: activeTab === 'assets' ? 'white' : '#64748b',
-            border: 'none',
-            borderRadius: '8px 8px 0 0',
-            cursor: 'pointer',
-            fontWeight: 'bold',
-            transition: 'all 0.2s'
-          }}
-        >
-          Assets Inventory
-        </button>
-
-        <button 
-          onClick={() => setActiveTab('users')}
-          style={{ 
-            padding: '12px 24px', 
-            backgroundColor: activeTab === 'users' ? '#0f172a' : 'transparent', 
-            color: activeTab === 'users' ? 'white' : '#64748b',
-            border: 'none',
-            borderRadius: '8px 8px 0 0',
-            cursor: 'pointer',
-            fontWeight: 'bold',
-            transition: 'all 0.2s'
-          }}
-        >
-          User Directory
-        </button>
-
-        <button 
-          onClick={() => setActiveTab('logs')}
-          style={{ 
-            padding: '12px 24px', 
-            backgroundColor: activeTab === 'logs' ? '#0f172a' : 'transparent', 
-            color: activeTab === 'logs' ? 'white' : '#64748b',
-            border: 'none',
-            borderRadius: '8px 8px 0 0',
-            cursor: 'pointer',
-            fontWeight: 'bold',
-            transition: 'all 0.2s'
-          }}
-        >
-          System Logs
-        </button>
-      </div>
-
-      {/* 📦 Main Content Routing */}
-      <main>
-        {activeTab === 'assets' && (
-          <>
-            <AddAsset onAssetAdded={() => setRefreshTrigger(prev => prev + 1)} />
-            <AssetList refreshTrigger={refreshTrigger} currentUser={currentUser} />
-          </>
-        )}
-
-        {activeTab === 'users' && <UserList />}
-
-        {activeTab === 'logs' && <AuditLogs />}
       </main>
 
     </div>
