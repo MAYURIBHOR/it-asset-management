@@ -45,8 +45,11 @@ function App() {
       {/* LEFT SIDEBAR */}
       <aside className="sidebar">
         <div className="sidebar-logo">
-          <div style={{ width: '32px', height: '32px', background: '#2563eb', borderRadius: '8px' }}></div>
-          IT ASSET MGT
+          <div style={{ width: '32px', height: '32px', background: '#2563eb', borderRadius: '8px', flexShrink: 0 }}></div>
+          <div style={{ display: 'flex', flexDirection: 'column', lineHeight: '1.2', fontSize: '1.1rem' }}>
+            <span>IT ASSET</span>
+            <span>MANAGEMENT</span>
+          </div>
         </div>
         
         <nav className="sidebar-nav">
@@ -76,7 +79,14 @@ function App() {
         
         {/* TOP NAVBAR */}
         <header className="topbar">
-          <div style={{ color: '#94a3b8' }}>Search placeholder...</div>
+          <div style={{ display: 'flex', alignItems: 'center', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', padding: '10px 16px', borderRadius: '8px', width: '400px' }}>
+            <span style={{ marginRight: '10px', fontSize: '14px' }}>🔍</span>
+            <input 
+              type="text" 
+              placeholder="Search assets, users, logs..." 
+              style={{ border: 'none', backgroundColor: 'transparent', outline: 'none', width: '100%', fontSize: '14px', color: '#0f172a' }}
+            />
+          </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <div style={{ textAlign: 'right' }}>
               <div style={{ fontWeight: 'bold', color: '#0f172a', fontSize: '14px' }}>{currentUser.name}</div>
