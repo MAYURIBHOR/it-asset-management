@@ -333,6 +333,7 @@
   .auth-branding h1 {
     font-size: 2.5rem;
   }
+}
   /* =========================================
    ENTERPRISE DASHBOARD LAYOUT
    ========================================= */
@@ -426,5 +427,4 @@
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 24px;
-}
 }
