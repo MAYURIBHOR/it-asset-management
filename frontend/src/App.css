@@ -224,13 +224,41 @@
   margin-top: 1rem;
 }
 
-.step-indicator {
-  color: #38bdf8;
+.step-indicator-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 0.85rem;
-  margin-bottom: 1rem;
+}
+
+.step-btn {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.step-btn.active {
+  color: #38bdf8;
+  border-bottom: 2px solid #38bdf8;
+  padding-bottom: 4px;
+}
+
+.step-btn.inactive {
+  color: #64748b;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+}
+
+.step-btn.inactive:hover {
+  color: #94a3b8;
+}
+
+.step-divider {
+  color: #334155;
+  user-select: none;
 }
 
 .auth-form-wrapper {

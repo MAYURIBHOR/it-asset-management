@@ -41,8 +41,20 @@ function Auth({ onLogin }) {
     <div className="auth-container">
       {/* LEFT SIDE: Branding */}
       <div className="auth-branding">
-        <div className="step-indicator">
-          Step {isLoginMode ? '1: User Login' : '2: Admin Registration'}
+        <div className="step-indicator-container">
+          <span 
+            className={`step-btn ${isLoginMode ? 'active' : 'inactive'}`}
+            onClick={() => { setIsLoginMode(true); setError(''); }}
+          >
+            Step 1: User Login
+          </span>
+          <span className="step-divider">/</span>
+          <span 
+            className={`step-btn ${!isLoginMode ? 'active' : 'inactive'}`}
+            onClick={() => { setIsLoginMode(false); setError(''); }}
+          >
+            Step 2: Admin Registration
+          </span>
         </div>
         <h1>IT ASSET<br/>MANAGEMENT<br/>SYSTEM</h1>
         <p>Enterprise resource tracking and infrastructure administration.</p>
