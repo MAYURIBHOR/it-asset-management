@@ -4,7 +4,8 @@ import '../App.css';
 
 function Auth({ onLogin }) {
   const [isLoginMode, setIsLoginMode] = useState(true);
-  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  // ✅ FIX: Only one formData declaration, now including companyName!
+  const [formData, setFormData] = useState({ name: '', email: '', password: '', companyName: '' });
   const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
@@ -26,11 +27,11 @@ function Auth({ onLogin }) {
         // Unlock the dashboard!
         onLogin(res.data.user);
       } else {
-        // 🆕 Attempt Registration
+        // 🆕 Attempt Registration (Now sending companyName too!)
         await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, formData);
-        alert('Account created successfully! Please log in.');
+        alert('Enterprise workspace created successfully! Please log in.');
         setIsLoginMode(true); // Switch back to the login view
-        setFormData({ name: '', email: '', password: '' });
+        setFormData({ name: '', email: '', password: '', companyName: '' });
       }
     } catch (err) {
       setError(err.response?.data?.error || 'An error occurred connecting to the server.');
@@ -72,18 +73,34 @@ function Auth({ onLogin }) {
           )}
           
           <form onSubmit={handleSubmit}>
+            
+            {/* ✅ FIX: Dynamically show both Company and Admin Name fields when registering */}
             {!isLoginMode && (
-              <div style={{ marginBottom: '16px' }}>
-                <label style={{ display: 'block', marginBottom: '6px', fontSize: '14px', fontWeight: 'bold', color: '#334155' }}>Full Name</label>
-                <input 
-                  type="text" 
-                  className="form-control" 
-                  placeholder="e.g., Aarya"
-                  required 
-                  value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                />
-              </div>
+              <>
+                <div style={{ marginBottom: '16px' }}>
+                  <label style={{ display: 'block', marginBottom: '6px', fontSize: '14px', fontWeight: 'bold', color: '#334155' }}>Company / Workspace Name</label>
+                  <input 
+                    type="text" 
+                    className="form-control" 
+                    placeholder="e.g., Acme Corp"
+                    required 
+                    value={formData.companyName}
+                    onChange={(e) => setFormData({...formData, companyName: e.target.value})}
+                  />
+                </div>
+
+                <div style={{ marginBottom: '16px' }}>
+                  <label style={{ display: 'block', marginBottom: '6px', fontSize: '14px', fontWeight: 'bold', color: '#334155' }}>Admin Full Name</label>
+                  <input 
+                    type="text" 
+                    className="form-control" 
+                    placeholder="e.g., Aarya"
+                    required 
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  />
+                </div>
+              </>
             )}
             
             <div style={{ marginBottom: '16px' }}>

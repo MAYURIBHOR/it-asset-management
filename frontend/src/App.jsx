@@ -86,7 +86,6 @@ function App() {
         <header className="topbar">
           {/* Left Side of Header: Menu Icon + Expanding Search */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '24px', flex: 1 }}>
-          <span style={{ fontSize: '20px', cursor: 'pointer', color: '#64748b' }}>☰</span>
           <div style={{ display: 'flex', alignItems: 'center', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', padding: '10px 16px', borderRadius: '8px', width: '100%', maxWidth: '800px' }}>
             <span style={{ marginRight: '10px', fontSize: '14px', color: '#94a3b8' }}>🔍</span>
             <input 
