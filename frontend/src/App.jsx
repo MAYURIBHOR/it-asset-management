@@ -80,7 +80,7 @@ function App() {
         
         {/* TOP NAVBAR */}
         <header className="topbar">
-          <div style={{ display: 'flex', alignItems: 'center', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', padding: '10px 16px', borderRadius: '8px', width: '400px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', padding: '10px 16px', borderRadius: '8px', width: '100%', maxWidth: '700px' }}>
             <span style={{ marginRight: '10px', fontSize: '14px' }}>🔍</span>
             <input 
               type="text" 
