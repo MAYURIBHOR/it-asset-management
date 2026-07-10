@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../App.css';
 
 function Auth({ onLogin }) {
   const [isLoginMode, setIsLoginMode] = useState(true);
