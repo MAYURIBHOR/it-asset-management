@@ -4,6 +4,7 @@ import AssetList from './components/AssetList';
 import AddAsset from './components/AddAsset';
 import AuditLogs from './components/AuditLogs';
 import UserList from './components/UserList';
+import './App.css';
 
 function App() {
   // 🔐 Security State
