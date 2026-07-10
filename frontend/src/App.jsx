@@ -15,6 +15,7 @@ function App() {
   
   // 🔄 Refresh State (Tells the table to update when a new asset is added)
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const [searchQuery, setSearchQuery] = useState('');
 
   // 🕵️‍♂️ Check for an active session when the browser reloads
   useEffect(() => {
@@ -84,6 +85,8 @@ function App() {
             <input 
               type="text" 
               placeholder="Search assets, users, logs..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               style={{ border: 'none', backgroundColor: 'transparent', outline: 'none', width: '100%', fontSize: '14px', color: '#0f172a' }}
             />
           </div>
@@ -115,7 +118,7 @@ function App() {
           {activeTab === 'assets' && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
               <AddAsset onAssetAdded={() => setRefreshTrigger(prev => prev + 1)} />
-              <AssetList refreshTrigger={refreshTrigger} currentUser={currentUser} />
+              <AssetList refreshTrigger={refreshTrigger} currentUser={currentUser} searchQuery={searchQuery} />
             </div>
           )}
 

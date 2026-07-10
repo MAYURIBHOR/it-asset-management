@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // 🆕 We added `currentUser` to the props so the table knows WHO is making changes!
-function AssetList({ refreshTrigger, currentUser }) {
+  function AssetList({ refreshTrigger, currentUser, searchQuery }) {
   const [assets, setAssets] = useState([]);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -105,10 +105,11 @@ function AssetList({ refreshTrigger, currentUser }) {
   const repairAssets = assets.filter(a => a.status === 'In Repair').length;
 
   // --- 🔍 SEARCH FILTERING ---
+  const query = searchQuery ? searchQuery.toLowerCase() : '';
   const filteredAssets = assets.filter(asset => 
-    asset.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    asset.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    asset.status.toLowerCase().includes(searchTerm.toLowerCase())
+    asset.name?.toLowerCase().includes(query) ||
+    asset.category?.toLowerCase().includes(query) ||
+    asset.status?.toLowerCase().includes(query)
   );
 
   if (loading) return <p>Loading inventory assets...</p>;
