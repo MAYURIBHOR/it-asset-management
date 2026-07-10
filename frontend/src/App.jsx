@@ -46,7 +46,11 @@ function App() {
       {/* LEFT SIDEBAR */}
       <aside className="sidebar">
         <div className="sidebar-logo">
-          <div style={{ width: '32px', height: '32px', background: '#2563eb', borderRadius: '8px', flexShrink: 0 }}></div>
+          {/* Custom SVG Geometric Logo */}
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
+            <path d="M12 2.5L2.5 8V16L12 21.5L21.5 16V8L12 2.5Z" stroke="#2563eb" strokeWidth="2.5" strokeLinejoin="round"/>
+            <path d="M12 7.5L7.5 10.5V13.5L12 16.5L16.5 13.5V10.5L12 7.5Z" fill="#2563eb"/>
+          </svg>
           <div style={{ display: 'flex', flexDirection: 'column', lineHeight: '1.2', fontSize: '1.1rem' }}>
             <span>IT ASSET</span>
             <span>MANAGEMENT</span>
@@ -80,16 +84,20 @@ function App() {
         
         {/* TOP NAVBAR */}
         <header className="topbar">
-          <div style={{ display: 'flex', alignItems: 'center', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', padding: '10px 16px', borderRadius: '8px', width: '100%', maxWidth: '700px' }}>
-            <span style={{ marginRight: '10px', fontSize: '14px' }}>🔍</span>
+          {/* Left Side of Header: Menu Icon + Expanding Search */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '24px', flex: 1 }}>
+          <span style={{ fontSize: '20px', cursor: 'pointer', color: '#64748b' }}>☰</span>
+          <div style={{ display: 'flex', alignItems: 'center', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', padding: '10px 16px', borderRadius: '8px', width: '100%', maxWidth: '800px' }}>
+            <span style={{ marginRight: '10px', fontSize: '14px', color: '#94a3b8' }}>🔍</span>
             <input 
               type="text" 
               placeholder="Search assets, users, logs..." 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              style={{ border: 'none', backgroundColor: 'transparent', outline: 'none', width: '100%', fontSize: '14px', color: '#0f172a' }}
+              style={{ border: 'none', backgroundColor: 'transparent', outline: 'none', width: '100%', fontSize: '15px', color: '#0f172a' }}
             />
           </div>
+        </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <div style={{ textAlign: 'right' }}>
               <div style={{ fontWeight: 'bold', color: '#0f172a', fontSize: '14px' }}>{currentUser.name}</div>
