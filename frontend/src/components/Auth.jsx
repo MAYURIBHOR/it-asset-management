@@ -4,8 +4,7 @@ import '../App.css';
 
 function Auth({ onLogin }) {
   const [isLoginMode, setIsLoginMode] = useState(true);
-  // ✅ FIX: Only one formData declaration, now including companyName!
-  const [formData, setFormData] = useState({ name: '', email: '', password: '', companyName: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
   const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
@@ -27,11 +26,11 @@ function Auth({ onLogin }) {
         // Unlock the dashboard!
         onLogin(res.data.user);
       } else {
-        // 🆕 Attempt Registration (Now sending companyName too!)
+        // 🆕 Attempt Registration
         await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, formData);
-        alert('Enterprise workspace created successfully! Please log in.');
+        alert('Account created successfully! Please log in.');
         setIsLoginMode(true); // Switch back to the login view
-        setFormData({ name: '', email: '', password: '', companyName: '' });
+        setFormData({ name: '', email: '', password: '' });
       }
     } catch (err) {
       setError(err.response?.data?.error || 'An error occurred connecting to the server.');
@@ -73,34 +72,18 @@ function Auth({ onLogin }) {
           )}
           
           <form onSubmit={handleSubmit}>
-            
-            {/* ✅ FIX: Dynamically show both Company and Admin Name fields when registering */}
             {!isLoginMode && (
-              <>
-                <div style={{ marginBottom: '16px' }}>
-                  <label style={{ display: 'block', marginBottom: '6px', fontSize: '14px', fontWeight: 'bold', color: '#334155' }}>Company / Workspace Name</label>
-                  <input 
-                    type="text" 
-                    className="form-control" 
-                    placeholder="e.g., Acme Corp"
-                    required 
-                    value={formData.companyName}
-                    onChange={(e) => setFormData({...formData, companyName: e.target.value})}
-                  />
-                </div>
-
-                <div style={{ marginBottom: '16px' }}>
-                  <label style={{ display: 'block', marginBottom: '6px', fontSize: '14px', fontWeight: 'bold', color: '#334155' }}>Admin Full Name</label>
-                  <input 
-                    type="text" 
-                    className="form-control" 
-                    placeholder="e.g., Aarya"
-                    required 
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  />
-                </div>
-              </>
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ display: 'block', marginBottom: '6px', fontSize: '14px', fontWeight: 'bold', color: '#334155' }}>Full Name</label>
+                <input 
+                  type="text" 
+                  className="form-control" 
+                  placeholder="e.g., Aarya"
+                  required 
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                />
+              </div>
             )}
             
             <div style={{ marginBottom: '16px' }}>
@@ -138,7 +121,7 @@ function Auth({ onLogin }) {
               className="toggle-link" 
               onClick={() => {
                 setIsLoginMode(!isLoginMode);
-                setError(''); // Clears any error when switching modes
+                setError(''); 
               }}
             >
               {isLoginMode ? 'Register here' : 'Log in'}

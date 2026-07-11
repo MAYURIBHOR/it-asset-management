@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 const db = require('../db'); 
 
 // 🔑 The secret key to stamp your digital ID cards 
-// (In a real production app, you hide this inside a .env file!)
 const JWT_SECRET = 'super_secret_it_asset_key_123';
 
 // 🆕 1. REGISTER: Create a new user with a hashed password
